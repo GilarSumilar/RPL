@@ -1,3 +1,35 @@
+<?php
+session_start();
+include_once 'functions.php';
+if (!isset($_SESSION['log'])) {
+} else {
+    header('location:dasboard.php');
+}
+
+if (isset($_POST['login'])) {
+    $user = mysqli_real_escape_string($conn, $_POST['username']);
+    $pass = mysqli_real_escape_string($conn, $_POST['password']);
+    $queryuser = mysqli_query($conn, "SELECT * FROM login where username = '$user'");
+    $cariuser = mysqli_fetch_assoc($queryuser);
+
+    if ($cariuser) {
+
+        if ((password_verify($pass, $cariuser['password']))) {
+            $_SESSION['userid'] = $cariuser['id'];
+            $_SESSION['username'] = $cariuser['username'];
+            $_SESSION['log'] = 'login';
+
+            header('location:dasboard.php');
+        } else {
+            echo '<script>alert("PW/Username salah !")</script>';
+            //header('location:login.php');
+        }
+    } else {
+        echo '<script>alert("User tidak ada !")</script>';
+        //header('location:login.php');
+    }
+};
+?>
 <!doctype html>
 <html lang="en">
 
@@ -38,16 +70,14 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body py-5 px-md-5">
-                                <form>
+                                <form method="post">
                                     <!-- Email input -->
                                     <div class="input-group mb-3 pt-4">
-                                        <input type="text" class="form-control" placeholder="Email or Username"
-                                            aria-label="Username">
+                                        <input type="username" class="form-control" placeholder="Email or Username" name="username">
                                     </div>
                                     <!-- Password input -->
                                     <div class="input-group mb-3 pt-4">
-                                        <input type="text" class="form-control" placeholder="Password"
-                                            aria-label="Username">
+                                        <input type="password" class="form-control" placeholder="Password" name="password">
                                     </div>
 
 
@@ -56,8 +86,7 @@
                                         <div class="col d-flex justify-content-center">
                                             <!-- Checkbox -->
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="form2Example31" checked />
+                                                <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
                                                 <label class="form-check-label" for="form2Example31"> Remember me
                                                 </label>
                                             </div>
@@ -71,8 +100,7 @@
 
                                     <!-- Submit button -->
                                     <div class="d-grid gap-2 mb-3">
-                                        <a href="dasboard.html" target="_blank" class="btn btn-secondary"
-                                            type="button">Sign</a>
+                                        <button class="btn btn-secondary" type="submit" name="login">Sign</button>
                                     </div>
                                 </form>
                             </div>

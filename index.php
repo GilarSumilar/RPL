@@ -28,7 +28,7 @@
                 RW<span style="color: #636262;"> Management</span>
             </a>
             <form class="d-flex">
-                <a href="login.html" target="_blank" type="button" class="btn btn-lg btn-outline-secondary">Login</a>
+                <a href="login.php" target="_blank" type="button" class="btn btn-lg btn-outline-secondary">Login</a>
             </form>
         </div>
     </nav>
@@ -40,7 +40,7 @@
         <p style="font-size: 15px;">Perum Kirana Cibitung, Ds Bojor, Kec Palungan, Kab Bekasi, Jawa Barat,
             Indonesia - 17520 <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dignissimos
             eligendi llo maiores ad ratione omnis ipsa.</p>
-        <a href="login.html" type="submit" class="btn btn-secondary btn-lg" style="font-family: Arial;">Get Started</a>
+        <a href="login.php" type="submit" class="btn btn-secondary btn-lg" style="font-family: Arial;">Get Started</a>
     </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
